@@ -97,7 +97,7 @@ class SwimTime(SwimmingInfo):
     #COMMENT One Swimmer - Many Times: Foreign Key References Swimmer who owns SwimTime
     swimmer =models.ForeignKey(Swimmer, on_delete=models.CASCADE)
     
-    time = models.DurationField(_('Time'), default= timedelta(minutes=1, seconds=1, milliseconds=10))
+    time = models.IntegerField(_('Time'), default=1)
     
     date = models.DateField(_('Date Recorded'),default = timezone.now)
     
@@ -185,7 +185,6 @@ class PersonalBest(models.Model):
     
     def __str__(self) :
         return f"{format_time(self.swim_time.time)}"
-       
     
 class Competition(models.Model):
     comp_name  = models.CharField('Competition Name', max_length=50)

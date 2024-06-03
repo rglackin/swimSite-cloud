@@ -1,3 +1,5 @@
 /.coverage
 /db.sqlite3
 /swimSite/__pycache__
+swimSite/__pycache__/settings.cpython-311.pyc
+/home/__pycache__
