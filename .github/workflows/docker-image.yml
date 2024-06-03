@@ -28,5 +28,5 @@ jobs:
     - name: Push Docker image to ECR
       run: |
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 557000108891.dkr.ecr.us-east-1.amazonaws.com
-          docker push 557000108891.dkr.ecr.us-east-1.amazonaws.com/my-django-app:${{github.sha}}  
+          docker push 557000108891.dkr.ecr.us-east-1.amazonaws.com/swimhub:${{github.sha}}  
       
