@@ -3,6 +3,7 @@ from . import views
 app_name = 'home'
 urlpatterns = [
     path('', views.HomePageView.as_view(), name='index'),
+    path('healthz', views.health_check, name='healthz'),
     #--swimmer paths
     path('swimmers/', views.SwimmerListView.as_view(), name='swimmers'),
     path('swimmer/create/',views.SwimmerFormView.as_view(),name='add swimmer'),

@@ -10,10 +10,11 @@ from django_tables2 import SingleTableView
 from .tables import SwimmerTable,CompTable
 from django.utils import timezone
 
-
+from django.http import JsonResponse
 # Create your views here.
 
-
+def health_check(request):
+    return JsonResponse({'status':'ok'})
 
 #----------------Home Page View
 class HomePageView(generic.TemplateView):
