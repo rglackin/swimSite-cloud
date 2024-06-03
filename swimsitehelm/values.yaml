@@ -8,7 +8,7 @@ image:
   repository: 557000108891.dkr.ecr.us-east-1.amazonaws.com/swimhub
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "{{values.github.sha}}"
+  tag: "{{ .Values.github.sha }}"
 github:
   sha: ""
 imagePullSecrets: []
