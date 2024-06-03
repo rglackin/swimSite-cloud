@@ -1,14 +1,6 @@
 version: '3'
 
 services:
-  #db:
-  #  image: postgres
-  #  environment:
-  #    POSTGRES_DB: swimsite_db
-  #    POSTGRES_USER: swimsite_user
-  #    POSTGRES_PASSWORD: swimsite_password
-  #  volumes:
-  #    - db_data:/var/lib/postgresql/data
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -16,10 +8,4 @@ services:
       - .:/app
     ports:
       - "8000:8000"
-    #depends_on:
-    #  - db
-    #environment:
-    #  DATABASE_URL: postgres://swimsite_user:swimsite_password@db:/swimsite_db
-
-#volumes:
-#  db_data:
+    
