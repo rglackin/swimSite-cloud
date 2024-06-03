@@ -1,0 +1,32 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build -t swimhub .
+    - name: Configure AWS credentials
+      run: |
+        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws configure set aws_session_token ${{ secrets.AWS_SESSION_TOKEN }}
+    - name: Tag Docker image
+      run: | 
+        IMAGE_ID=$(docker images -q swimhub)
+        docker tag $IMAGE_ID 557000108891.dkr.ecr.us-east-1.amazonaws.com/swimhub:${{github.sha}}
+    - name: Push Docker image to ECR
+      run: |
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 557000108891.dkr.ecr.us-east-1.amazonaws.com
+          docker push 557000108891.dkr.ecr.us-east-1.amazonaws.com/swimhub:${{github.sha}}  
+      
