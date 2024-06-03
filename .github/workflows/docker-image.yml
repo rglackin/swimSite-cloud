@@ -27,17 +27,17 @@ jobs:
     - name: Tag Docker image
       run: | 
         IMAGE_ID=$(docker images -q swimhub)
-        docker tag $IMAGE_ID 557000108891.dkr.ecr.us-east-1.amazonaws.com/swimhub:${{github.sha}}
+        docker tag $IMAGE_ID 557000108891.dkr.ecr.us-east-1.amazonaws.com/swimhub:test
     - name: Push Docker image to ECR
       run: |
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 557000108891.dkr.ecr.us-east-1.amazonaws.com
-          docker push 557000108891.dkr.ecr.us-east-1.amazonaws.com/swimhub:${{github.sha}}
+          docker push 557000108891.dkr.ecr.us-east-1.amazonaws.com/swimhub:test
     - name: Update kubeconfig for EKS cluster
       run: |
         aws eks --region us-east-1 update-kubeconfig --name my-eks-cluster
     
     - name: Deploy Helm chart
       run: |
-        helm upgrade --install test-node ./swimsitehelm --set image.repository=557000108891.dkr.ecr.us-east-1.amazonaws.com/swimhub --set image.tag=${{ github.sha }}
+        helm upgrade --install test-node ./swimsitehelm --set image.repository=557000108891.dkr.ecr.us-east-1.amazonaws.com/swimhub --set image.tag=$test
         
       
