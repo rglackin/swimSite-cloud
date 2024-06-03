@@ -38,6 +38,6 @@ jobs:
     
     - name: Deploy Helm chart
       run: |
-        helm upgrade --install swimhub-node ./swimsitehelm --recreate-pods
+        helm upgrade --install swimhub-node ./swimsitehelm --recreate-pods --set image.tag="latest"
         
       
