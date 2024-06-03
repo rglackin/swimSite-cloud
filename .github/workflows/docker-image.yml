@@ -38,6 +38,6 @@ jobs:
     
     - name: Deploy Helm chart
       run: |
-        helm upgrade --install swimhub-node ./swimsitehelm --set image.repository=557000108891.dkr.ecr.us-east-1.amazonaws.com/swimhub --set image.tag=$test
+        helm upgrade --install swimhub-node ./swimsitehelm --set image.repository=557000108891.dkr.ecr.us-east-1.amazonaws.com/swimhub --set image.tag=test
         
       
