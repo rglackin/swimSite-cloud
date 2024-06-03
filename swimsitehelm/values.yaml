@@ -3,14 +3,14 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-github:
-  sha: ""
+
 image:
   repository: 557000108891.dkr.ecr.us-east-1.amazonaws.com/swimhub
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "{{values.github.sha}}"
-
+github:
+  sha: ""
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
