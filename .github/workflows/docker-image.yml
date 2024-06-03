@@ -16,6 +16,11 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build -t swimhub .
+    - name: Configure AWS credentials
+      run: |
+        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws configure set aws_session_token ${{ secrets.AWS_SESSION_TOKEN }}
     - name: Tag Docker image
       run: | 
         IMAGE_ID=$(docker images -q swimhub)
