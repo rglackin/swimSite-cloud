@@ -3,12 +3,13 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-
+github:
+  sha: ""
 image:
   repository: swimsite-web
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: "{{values.github.sha}}"
 
 imagePullSecrets: []
 nameOverride: ""

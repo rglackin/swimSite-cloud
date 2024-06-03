@@ -37,6 +37,6 @@ jobs:
       uses: azure/setup-helm@v1
     - name: Deploy Helm chart
       run: |
-        helm upgrade --install swim-site-node ./swimsitehelm \
+        helm upgrade --install swim-site-node ./swimsitehelm --set github.sha=${{github.sha}}
         
       
