@@ -32,12 +32,12 @@ jobs:
       run: |
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 557000108891.dkr.ecr.us-east-1.amazonaws.com
           docker push 557000108891.dkr.ecr.us-east-1.amazonaws.com/swimhub:latest
-    - name: Update kubeconfig for EKS cluster
-      run: |
-        aws eks --region us-east-1 update-kubeconfig --name my-eks-cluster
+    #- name: Update kubeconfig for EKS cluster
+    #  run: |
+    #    aws eks --region us-east-1 update-kubeconfig --name my-eks-cluster
     
-    - name: Deploy Helm chart
-      run: |
-        helm upgrade --install swimhub-node ./swimsitehelm --recreate-pods --set image.tag=latest --debug
+   # - name: Deploy Helm chart
+    #  run: |
+     #   helm upgrade --install swimhub-node ./swimsitehelm --recreate-pods --set image.tag=latest --debug
         
       
